@@ -1,0 +1,36 @@
+angular.module('demoRoleApp', ['ui.router'])
+  .config(function ($stateProvider, $urlRouterProvider, USER_ROLES) {
+    $urlRouterProvider.otherwise('login')
+
+    $stateProvider
+      .state('base', {
+        abstract: true,
+        url: '',
+        templateUrl: 'src/main/main.html',
+        controller: 'MainCtrl'
+      })
+      .state('login', {
+        parent: 'base',
+        url: '/login',
+        templateUrl: 'src/login/login.html',
+        controller: 'LoginCtrl'
+      })
+      .state('admin', {
+        parent: 'base',
+        url: '/admin',
+        templateUrl: 'src/admin/admin.html',
+        controller: 'AdminCtrl',
+        data: {
+          authorizedRoles: [USER_ROLES.superAdmin, USER_ROLES.admin]
+        }
+      })
+      .state('children', {
+        parent: 'base',
+        url: '/children',
+        templateUrl: 'src/children/children.html',
+        controller: 'AdminCtrl',
+        data: {
+          authorizedRoles: [USER_ROLES.superAdmin, USER_ROLES.admin, USER_ROLES.children]
+        }
+      })
+  })
