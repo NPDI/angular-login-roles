@@ -3,12 +3,17 @@ angular.module('demoRoleApp')
     ['$scope', 'loginFactory',
       function ($scope, loginFactory) {
         $scope.user = {}
-        $scope.user.role = 'superAdmin'
+        
+        //$scope.user.role = 'superAdmin'
 
         $scope.login = function (user) {
+
           loginFactory.login($scope.user)
-            .then(function (good) {
-              $scope.setUser(good)
+            .then(function (res) {
+
+              console.log(res)
+
+              $scope.setUser(res)
             })
         }
       }])

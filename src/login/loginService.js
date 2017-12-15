@@ -7,17 +7,15 @@ angular.module('demoRoleApp')
       loginFactory.login = function (user) {
         var deferred = $q.defer()
 
-        deferred.resolve(user)
-
         $http({
           method: 'POST',
-          url: 'www.dulval.tech:8092/login',
+          url: 'http://localhost:8092/login',
           data: {
-            user: user
+            email: user.email,
+            password: user.pword
           }
-
-        }).success(function (data) {
-          defer.resolve(data)
+        }).success(function (res) {
+          deferred.resolve(res)
         }).error(function (err) {
           deferred.reject(err)
         })

@@ -7,13 +7,15 @@ angular.module('demoRoleApp')
 
         $scope.setUser = function (user) {
           var p = null
-          if (user.role == 'superAdmin') {
+
+          //console.log(user)
+          if (user.type === 1) {
             user.roleCode = USER_ROLES.superAdmin
             p = 'admin'
-          }else if (user.role == 'admin') {
+          }else if (user.type === 2) {
             user.roleCode = USER_ROLES.admin
-            p = 'admin'
-          }else if (user.role == 'children') {
+            p = 'responsible'
+          }else if (user.type === 3) {
             user.roleCode = USER_ROLES.children
             p = 'children'
           }
@@ -21,13 +23,12 @@ angular.module('demoRoleApp')
           if (p !== null) {
             p = '/' + p
 
-            user.id = parseInt(Math.random() * 1000)
-
             $scope.currentUser = user
             $rootScope.currentUser = user
-            AuthService.newSession(user)
 
+            AuthService.newSession(user)
             $location.path(p)
+
           }else
             alert('Unable to Log You In :(')
         }
