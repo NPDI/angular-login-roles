@@ -12,19 +12,11 @@ angular.module('demoRoleApp')
       }
 
       authService.logout = function () {
-        // var token = Session.id
         Session.destroy()
-      /*	    
-      $http({
-          method: 'POST',
-          url:'http://dulval.tech/api/logout', data:{token:token}
-      //    url:'http://localhost:9190/api/logout', data:{token:token}
-      })
-      */
       }
 
-      authService.isAdmin = function () {
-        return !!Session.id && (Session.roleCode === USER_ROLES.admin || Session.roleCode === USER_ROLES.superAdmin)
+      authService.isResponsible = function () {
+        return !!Session.id && (Session.roleCode === USER_ROLES.responsible || Session.roleCode === USER_ROLES.manager)
       }
 
       authService.isAuthenticated = function () {
