@@ -15,13 +15,13 @@ angular.module('demoRoleApp', ['ui.router'])
         templateUrl: 'src/login/login.html',
         controller: 'LoginCtrl'
       })
-      .state('admin', {
+      .state('responsible', {
         parent: 'base',
-        url: '/admin',
+        url: '/responsible',
         templateUrl: 'src/admin/admin.html',
         controller: 'AdminCtrl',
         data: {
-          authorizedRoles: [USER_ROLES.superAdmin, USER_ROLES.admin]
+          authorizedRoles: [USER_ROLES.manager, USER_ROLES.responsible]
         }
       })
       .state('children', {
@@ -30,7 +30,7 @@ angular.module('demoRoleApp', ['ui.router'])
         templateUrl: 'src/children/children.html',
         controller: 'AdminCtrl',
         data: {
-          authorizedRoles: [USER_ROLES.superAdmin, USER_ROLES.admin, USER_ROLES.children]
+          authorizedRoles: [USER_ROLES.manager, USER_ROLES.responsible, USER_ROLES.children]
         }
       })
   })

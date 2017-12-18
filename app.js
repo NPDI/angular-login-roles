@@ -15,15 +15,15 @@ angular.module('demoRoleApp')
           $state.go('login')
           alert('Access Denied')
         }
-      } else if (next.name == 'admin' && AuthService.isAdmin())
-        $state.go('admin')
+      } else if (next.name == 'responsible' && AuthService.isResponsible())
+        $state.go('responsible')
     })
   })
 
 angular.module('demoRoleApp')
   .constant('USER_ROLES', {
     all: '*',
-    superAdmin: 'superAdmin',
-    admin: 'admin',
+    manager: 'manager',
+    responsible: 'responsible',
     children: 'children'
   })
